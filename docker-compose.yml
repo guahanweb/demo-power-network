@@ -19,17 +19,18 @@ services:
       context: .
       dockerfile: ${API_DOCKERFILE}
       target: dev
-    container_name: api
+    container_name: ${PROJECT_NAME}-api
     environment:
       - NODE_ENV=${NODE_ENV}
       - PORT=${API_PORT}
-      - REDIS_HOST=redis
+      - REDIS_URL=redis://redis:6379
     ports:
       - "${API_PORT}:${API_PORT}"
     depends_on:
       - redis
     volumes:
       - ./apps/api/src:/app/apps/api/src
+      - ./apps/api/__data:/app/apps/api/__data
     networks:
       - app-network
 
@@ -47,7 +48,7 @@ services:
 
   redis:
     image: redis:alpine
-    container_name: redis
+    container_name: ${PROJECT_NAME}-redis
     ports:
       - "6379:6379"
     networks:
@@ -58,7 +59,7 @@ services:
       context: .
       dockerfile: ${POWER_CLIENT_DOCKERFILE}
       target: dev
-    container_name: power-client
+    container_name: ${PROJECT_NAME}-power-client
     environment:
       - VITE_HOST=0.0.0.0
       - VITE_PORT=${POWER_CLIENT_PORT}
@@ -73,11 +74,14 @@ services:
       context: .
       dockerfile: ${ELVEN_CLIENT_DOCKERFILE}
       target: dev
-    container_name: elven-client
+    container_name: ${PROJECT_NAME}-elven-client
     environment:
       - VITE_HOST=0.0.0.0
       - VITE_PORT=${ELVEN_CLIENT_PORT}
       - API_URL=http://api:${API_PORT}
+    volumes:
+      - ./apps/elven-client/src:/app/apps/elven-client/src
+      - ./apps/elven-client/public:/app/apps/elven-client/public
     ports:
       - "${ELVEN_CLIENT_PORT}:${ELVEN_CLIENT_PORT}"
     networks:
@@ -88,25 +92,36 @@ services:
       context: .
       dockerfile: ${DWARVEN_CLIENT_DOCKERFILE}
       target: dev
-    container_name: dwarven-client
+    container_name: ${PROJECT_NAME}-dwarven-client
     environment:
       - VITE_HOST=0.0.0.0
       - VITE_PORT=${DWARVEN_CLIENT_PORT}
       - API_URL=http://api:${API_PORT}
+    volumes:
+      - ./apps/dwarven-client/src:/app/apps/dwarven-client/src
+      - ./apps/dwarven-client/public:/app/apps/dwarven-client/public
     ports:
       - "${DWARVEN_CLIENT_PORT}:${DWARVEN_CLIENT_PORT}"
     networks:
       - app-network
 
-  # human-client:
-  #   build:
-  #     context: ./apps/human-client
-  #     dockerfile: Dockerfile
-  #   container_name: human-client
-  #   environment:
-  #     - CLIENT_ID=human
-  #   networks:
-  #     - app-network
+  human-client:
+    build:
+      context: .
+      dockerfile: ${HUMAN_CLIENT_DOCKERFILE}
+      target: dev
+    container_name: ${PROJECT_NAME}-human-client
+    environment:
+      - VITE_HOST=0.0.0.0
+      - VITE_PORT=${HUMAN_CLIENT_PORT}
+      - API_URL=http://api:${API_PORT}
+    volumes:
+      - ./apps/human-client/src:/app/apps/human-client/src
+      - ./apps/human-client/public:/app/apps/human-client/public
+    ports:
+      - "${HUMAN_CLIENT_PORT}:${HUMAN_CLIENT_PORT}"
+    networks:
+      - app-network
 
 networks:
   app-network:

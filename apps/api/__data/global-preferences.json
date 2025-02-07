@@ -1,0 +1,14 @@
+{
+    "email_notifications": {
+        "id": "email_notifications",
+        "name": "Email Notifications",
+        "description": "Receive email notifications for important events",
+        "enabled": true
+    },
+    "data_sharing_consent": {
+        "id": "data_sharing_consent",
+        "name": "Data Sharing Consent",
+        "description": "Consent to share data with third parties",
+        "enabled": false
+    }
+}

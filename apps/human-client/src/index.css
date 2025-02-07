@@ -1,0 +1,17 @@
+@import 'tailwindcss';
+
+body {
+  .human-background::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('/human-crown.svg');
+    background-position: center;
+    background-size: 75%;
+    opacity: 0.1;
+    transform: rotate(-10deg);
+    z-index: 1;
+    pointer-events: none;
+    filter: invert(52%) sepia(13%) saturate(568%) hue-rotate(11deg) brightness(91%) contrast(84%); /* Makes it #8B7355 */
+  }
+}

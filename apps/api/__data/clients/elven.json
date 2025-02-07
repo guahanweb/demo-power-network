@@ -1,0 +1,8 @@
+{
+    "preferences": {
+        "email_notifications": {
+            "name": "Messages from the White Council",
+            "description": "Receive important scrolls and missives from the Eldar lords."
+        }
+    }
+}

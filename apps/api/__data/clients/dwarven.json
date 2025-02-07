@@ -1,0 +1,14 @@
+{
+    "preferences": {
+        "data_sharing_consent": {
+            "name": "Vault Record Sharing",
+            "description": "Allow your vault records to be shared with other dwarves."
+        },
+        "dwarven_newsletter": {
+            "id": "dwarven_newsletter",
+            "name": "Dwarven Newsletter",
+            "description": "Receive important news and updates from the dwarves.",
+            "enabled": true
+        }
+    }
+}

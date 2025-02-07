@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <!-- Elven Leaf -->
+  <symbol id="elven-leaf" viewBox="0 0 100 100">
+    <path d="M50 10 C80 40, 80 60, 50 90 C20 60, 20 40, 50 10 Z" 
+          stroke="currentColor" fill="none" stroke-width="2"/>
+    <path d="M50 10 L50 90 M30 40 Q50 50 70 40" 
+          stroke="currentColor" fill="none" stroke-width="1"/>
+  </symbol>
+
+  <!-- Dwarven Hammer -->
+  <symbol id="dwarven-hammer" viewBox="0 0 100 100">
+    <path d="M30 70 L70 30 L80 40 L40 80 Z" stroke="currentColor" fill="none" stroke-width="2"/>
+    <rect x="65" y="25" width="10" height="40" transform="rotate(45 70 30)" 
+          stroke="currentColor" fill="none" stroke-width="2"/>
+  </symbol>
+
+  <!-- Human Crown -->
+  <symbol id="human-crown" viewBox="0 0 100 100">
+    <path d="M20 60 L35 30 L50 50 L65 30 L80 60 L20 60" 
+          stroke="currentColor" fill="none" stroke-width="2"/>
+    <path d="M25 65 L75 65" stroke="currentColor" stroke-width="2"/>
+  </symbol>
+
+  <!-- Example Usage - repeat pattern -->
+  <defs>
+    <pattern id="elven-pattern" patternUnits="userSpaceOnUse" width="200" height="200">
+      <use href="#elven-leaf" x="50" y="50" width="100" height="100" opacity="0.1"/>
+    </pattern>
+    <pattern id="dwarven-pattern" patternUnits="userSpaceOnUse" width="200" height="200">
+      <use href="#dwarven-hammer" x="50" y="50" width="100" height="100" opacity="0.1"/>
+    </pattern>
+    <pattern id="human-pattern" patternUnits="userSpaceOnUse" width="200" height="200">
+      <use href="#human-crown" x="50" y="50" width="100" height="100" opacity="0.1"/>
+    </pattern>
+  </defs>
+
+  <!-- Pattern Examples -->
+  <rect width="133" height="400" x="0" fill="url(#elven-pattern)"/>
+  <rect width="133" height="400" x="133" fill="url(#dwarven-pattern)"/>
+  <rect width="133" height="400" x="266" fill="url(#human-pattern)"/>
+</svg>

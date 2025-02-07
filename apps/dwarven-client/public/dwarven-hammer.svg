@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" stroke="currentColor">
+  <!-- Handle -->
+  <path d="M45 85 L45 35" stroke-width="3"/>
+  <!-- Hammer Head -->
+  <path d="M25 25 L65 25 L65 45 L25 45 Z" stroke-width="3"/>
+  <!-- Details -->
+  <path d="M30 25 L30 45" stroke-width="1"/>
+  <path d="M45 25 L45 45" stroke-width="1"/>
+  <path d="M60 25 L60 45" stroke-width="1"/>
+  <path d="M25 35 L65 35" stroke-width="1"/>
+</svg>
