@@ -1,0 +1,12 @@
+{
+    "name": "@ringnetwork-demo/dwarven-client",
+    "version": "1.0.0",
+    "main": "src/index.ts",
+    "scripts": {
+      "build": "tsc",
+      "start": "node dist/index.js",
+      "dev": "ts-node src/index.ts"
+    },
+    "dependencies": {}
+  }
+  

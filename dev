@@ -1,0 +1,74 @@
+#!/usr/bin/env bash
+
+# Load environment variables
+set -o allexport
+source .env.runtime set
+set +o allexport
+
+DOCKER_COMPOSE_CMD=${DOCKER_COMPOSE_CMD:-docker compose}
+DOCKER_COMPOSE_ENV=${DOCKER_COMPOSE_ENV:-"--env-file .env"}
+
+CMD=${1}
+if [ -z "${CMD}" ]; then
+    echo "Usage: dev start|stop|restart [service]"
+    exit 1
+fi
+shift
+
+case ${CMD} in
+    start)
+        ${DOCKER_COMPOSE_CMD} ${DOCKER_COMPOSE_ENV} up --force-recreate --remove-orphans --detach
+        echo ""
+        echo "Power Network Demo is running."
+        echo "Go to http://localhost:3080 for the reverse proxy."
+        ;;
+
+    stop)
+        ${DOCKER_COMPOSE_CMD} ${DOCKER_COMPOSE_ENV} down --remove-orphans --volumes
+        echo ""
+        echo "Power Network Demo is stopped."
+        ;;
+
+    restart)
+        service=${1}
+        if [ -z "${service}" ]; then
+            echo "Usage: dev restart <service>"
+            exit 1
+        fi
+
+        ${DOCKER_COMPOSE_CMD} ${DOCKER_COMPOSE_ENV} stop ${service}
+        ${DOCKER_COMPOSE_CMD} ${DOCKER_COMPOSE_ENV} rm --force ${service}
+        ${DOCKER_COMPOSE_CMD} ${DOCKER_COMPOSE_ENV} create ${service}
+        ${DOCKER_COMPOSE_CMD} ${DOCKER_COMPOSE_ENV} start ${service}
+        ;;
+
+    redeploy)
+        service=${1}
+        if [ -z "${service}" ]; then
+            echo "Usage: dev redeploy <service>"
+            exit 1
+        fi
+
+        ${DOCKER_COMPOSE_CMD} ${DOCKER_COMPOSE_ENV} build ${service}
+        ${DOCKER_COMPOSE_CMD} ${DOCKER_COMPOSE_ENV} stop ${service}
+        ${DOCKER_COMPOSE_CMD} ${DOCKER_COMPOSE_ENV} rm --force ${service}
+        ${DOCKER_COMPOSE_CMD} ${DOCKER_COMPOSE_ENV} create ${service}
+        ${DOCKER_COMPOSE_CMD} ${DOCKER_COMPOSE_ENV} start ${service}
+        ;;
+
+    exec)
+        service=${1}
+        if [ -z "${service}" ]; then
+            echo "Usage: dev exec <service> <command>"
+            exit 1
+        fi
+        shift
+
+        docker exec -it ${service} "$@"
+        ;;
+
+    *)
+        echo "Usage: dev start|stop|restart|redeploy|exec [service] [command]"
+        exit 1
+        ;;
+esac
