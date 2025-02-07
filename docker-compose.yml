@@ -64,6 +64,9 @@ services:
       - VITE_HOST=0.0.0.0
       - VITE_PORT=${POWER_CLIENT_PORT}
       - API_URL=http://api:${API_PORT}
+    volumes:
+      - ./apps/power-client/src:/app/apps/power-client/src
+      - ./apps/power-client/public:/app/apps/power-client/public
     ports:
       - "${POWER_CLIENT_PORT}:${POWER_CLIENT_PORT}"
     networks:

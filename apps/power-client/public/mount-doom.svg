@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" stroke="currentColor">
+  <!-- Main Volcano Shape -->
+  <path d="M20 80 L50 10 L80 80" stroke-width="2"/>
+  <!-- Crater -->
+  <path d="M40 40 L60 40" stroke-width="2"/>
+  <!-- Lava Suggestion -->
+  <path d="M45 40 L50 60 L55 40" stroke-width="1.5"/>
+  <path d="M35 80 L50 70 L65 80" stroke-width="1.5"/>
+</svg>

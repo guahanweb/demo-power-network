@@ -1,5 +1,22 @@
 @import 'tailwindcss';
 
 body {
-  @apply bg-gray-100;
+  .mordor-background::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('/mount-doom.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 75%;
+    opacity: 0.15;
+    transform: rotate(0deg); /* The tower stands straight */
+    z-index: 1;
+    pointer-events: none;
+    filter: invert(27%) sepia(94%) saturate(2516%) hue-rotate(5deg) brightness(98%) contrast(95%); /* Makes it #FF4500 */
+  }
+  
+  .mordor-background {
+    position: relative;
+  }
 }
