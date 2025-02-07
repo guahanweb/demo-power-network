@@ -68,25 +68,35 @@ services:
     networks:
       - app-network
 
-  # elven-client:
-  #   build:
-  #     context: ./apps/elven-client
-  #     dockerfile: Dockerfile
-  #   container_name: elven-client
-  #   environment:
-  #     - CLIENT_ID=elven
-  #   networks:
-  #     - app-network
+  elven-client:
+    build:
+      context: .
+      dockerfile: ${ELVEN_CLIENT_DOCKERFILE}
+      target: dev
+    container_name: elven-client
+    environment:
+      - VITE_HOST=0.0.0.0
+      - VITE_PORT=${ELVEN_CLIENT_PORT}
+      - API_URL=http://api:${API_PORT}
+    ports:
+      - "${ELVEN_CLIENT_PORT}:${ELVEN_CLIENT_PORT}"
+    networks:
+      - app-network
 
-  # dwarven-client:
-  #   build:
-  #     context: ./apps/dwarven-client
-  #     dockerfile: Dockerfile
-  #   container_name: dwarven-client
-  #   environment:
-  #     - CLIENT_ID=dwarven
-  #   networks:
-  #     - app-network
+  dwarven-client:
+    build:
+      context: .
+      dockerfile: ${DWARVEN_CLIENT_DOCKERFILE}
+      target: dev
+    container_name: dwarven-client
+    environment:
+      - VITE_HOST=0.0.0.0
+      - VITE_PORT=${DWARVEN_CLIENT_PORT}
+      - API_URL=http://api:${API_PORT}
+    ports:
+      - "${DWARVEN_CLIENT_PORT}:${DWARVEN_CLIENT_PORT}"
+    networks:
+      - app-network
 
   # human-client:
   #   build:
