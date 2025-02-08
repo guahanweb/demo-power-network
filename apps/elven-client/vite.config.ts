@@ -11,6 +11,9 @@ if (process.env.API_URL) {
     server.proxy = {
         '/api': {
             target: process.env.API_URL,
+            headers: {
+              'x-client-id': 'elven',
+            },
             changeOrigin: true,
             rewrite: (path: string) => path.replace(/^\/api/, ''),
         },

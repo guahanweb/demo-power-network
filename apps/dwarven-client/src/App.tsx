@@ -40,7 +40,10 @@ function App() {
         {!loading && !error && (
           <>
             <h2 className="text-2xl font-normal text-[#FFB74D]">Hammer out Your Settings</h2>
-            <PreferencesList />
+            <PreferencesList
+              submitButtonText="Strike the Anvil"
+              submitButtonClass="bg-amber-900 hover:bg-amber-800 text-white transition-colors duration-100"
+            />
           </>
         )}
       </div>

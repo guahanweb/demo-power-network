@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "tailwindcss/utilities";
 
 @theme {
   /* Color Palette - Elven Inspired */
@@ -12,6 +13,18 @@
 }
 
 @layer base {
+  .bg-color-mist {
+    background-color: var(--color-mist);
+  }
+
+  .bg-color-jade {
+    background-color: var(--color-jade);
+  }
+
+  .border-color-jade {
+    border-color: var(--color-jade);
+  }
+
   .elven-background::before {
     content: '';
     position: absolute;
