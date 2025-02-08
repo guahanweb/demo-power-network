@@ -2,7 +2,27 @@
     "preferences": {
         "email_notifications": {
             "name": "Messages from the White Council",
-            "description": "Receive important scrolls and missives from the Eldar lords."
+            "description": "Receive important scrolls and missives from the Eldar lords"
+        },
+        "dark_mode": {
+            "name": "Starlight Vision",
+            "description": "Illuminate your display with the gentle light of Elbereth"
+        },
+        "language_preference": {
+            "name": "Tongue of the Firstborn",
+            "description": "Choose between Quenya, Sindarin, or the Common Speech"
+        },
+        "forest_health": {
+            "id": "forest_health",
+            "name": "Woodland Alerts",
+            "description": "Monitor the health and harmony of our forest realm",
+            "enabled": true
+        },
+        "lore_updates": {
+            "id": "lore_updates",
+            "name": "Songs of the Ages",
+            "description": "Receive new additions to our historical archives and song collections",
+            "enabled": false
         }
     }
 }

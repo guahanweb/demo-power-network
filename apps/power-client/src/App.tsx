@@ -1,5 +1,5 @@
 import MainLayout from './components/MainLayout'
-// import PreferencesList from './components/PreferencesList'
+import PreferencesList from './components/PreferencesList'
 import { usePreferences } from './state/preferencesContext'
 import './App.css'
 
@@ -42,7 +42,7 @@ function App() {
               <h3 className="text-lg font-normal text-[#959595]">
                 No setting is hidden. The will of Mordor watches every choice, every change.
               </h3>
-              <pre>{JSON.stringify(preferences, null, 2)}</pre>
+              <PreferencesList preferences={preferences} />
             </>
           )}
         </div>

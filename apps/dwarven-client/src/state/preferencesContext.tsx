@@ -37,7 +37,7 @@ const preferencesReducer = (state: PreferencesState, action: PreferencesAction):
         case 'FETCH_SUCCESS':
             return { ...state, loading: false, preferences: action.payload };
         case 'UPDATE_SUCCESS':
-            return { ...state, loading: false, preferences: { ...state.preferences, ...action.payload } };
+            return { ...state, loading: false, preferences: action.payload };
         case 'FETCH_ERROR':
         case 'UPDATE_ERROR':
             return { ...state, loading: false, error: action.payload };
@@ -68,8 +68,19 @@ export const PreferencesProvider = ({ children }: { children: ReactNode }) => {
     const handleUpdatePreferences = async (preferences: Record<string, boolean>) => {
         dispatch({ type: 'UPDATE_START' });
         try {
-            const data = await updatePreferences(preferences);
-            dispatch({ type: 'UPDATE_SUCCESS', payload: data });
+            await updatePreferences(preferences);
+
+            const updatedPreferences = Object.entries(state.preferences).map(
+                ([id, pref]) => ({
+                    ...pref,
+                    enabled: typeof preferences[id] !== 'undefined' ? preferences[id] : pref.enabled,
+                })
+            );
+
+            dispatch({
+                type: 'UPDATE_SUCCESS',
+                payload: updatedPreferences,
+            });
         } catch (error: any) {
             dispatch({ type: 'UPDATE_ERROR', payload: error.message });
         }

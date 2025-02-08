@@ -1,5 +1,13 @@
 @import 'tailwindcss';
 
+@theme {
+  --color-obsidian: #1a1a1a;
+  --color-charcoal: #2d2d2d;
+  --color-molten: #ff4500;
+  --color-ember: #cd5c5c;
+  --color-ash: #cccccc;
+}
+
 body {
   .mordor-background::before {
     content: '';

@@ -1,14 +1,38 @@
 {
     "email_notifications": {
         "id": "email_notifications",
-        "name": "Email Notifications",
-        "description": "Receive email notifications for important events",
+        "name": "Message Bird Notifications",
+        "description": "Receive important updates via messenger birds",
         "enabled": true
     },
     "data_sharing_consent": {
         "id": "data_sharing_consent",
-        "name": "Data Sharing Consent",
-        "description": "Consent to share data with third parties",
+        "name": "Information Sharing",
+        "description": "Allow sharing of non-sensitive information between allied kingdoms",
+        "enabled": false
+    },
+    "dark_mode": {
+        "id": "dark_mode",
+        "name": "Night Vision Mode",
+        "description": "Enable darker display colors, perfect for evening travels or underground passages",
+        "enabled": false
+    },
+    "language_preference": {
+        "id": "language_preference",
+        "name": "Preferred Tongue",
+        "description": "Choose your preferred language (Common Speech, Sindarin, Khuzdul, etc.)",
+        "enabled": true
+    },
+    "travel_alerts": {
+        "id": "travel_alerts",
+        "name": "Path Warnings",
+        "description": "Receive alerts about road conditions, weather, and reported dangers on common routes",
+        "enabled": true
+    },
+    "market_updates": {
+        "id": "market_updates",
+        "name": "Market Intelligence",
+        "description": "Stay informed about trade opportunities and price changes across Middle Earth's markets",
         "enabled": false
     }
 }

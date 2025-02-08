@@ -1,0 +1,24 @@
+{
+    "preferences": {
+        "travel_alerts": {
+            "name": "Rangers' Watch",
+            "description": "Receive warnings and guidance from the Dúnedain rangers"
+        },
+        "market_updates": {
+            "name": "Trade Reports",
+            "description": "Stay informed of commerce across the realms of Men"
+        },
+        "harvest_tracker": {
+            "id": "harvest_tracker",
+            "name": "Harvest Reports",
+            "description": "Track crop yields and agricultural forecasts across the kingdoms",
+            "enabled": true
+        },
+        "alliance_updates": {
+            "id": "alliance_updates",
+            "name": "Kingdom Relations",
+            "description": "Stay informed of diplomatic matters between the realms of Men",
+            "enabled": true
+        }
+    }
+}

@@ -10,18 +10,20 @@ export interface Preference {
 }
 
 // Client Preferences Interface
-interface ClientPreferences {
+export interface ClientPreferences {
     [preferenceId: string]: Preference;
+}
+
+export interface PreferencesGroups {
+    global: ClientPreferences;
+    elven: ClientPreferences;
+    dwarven: ClientPreferences;
+    human: ClientPreferences;
 }
 
 // Mordor (Power Client) Preferences State
 interface MordorPreferencesState {
-    preferences: {
-        global: ClientPreferences;
-        elven: ClientPreferences;
-        dwarven: ClientPreferences;
-        human: ClientPreferences;
-    };
+    preferences: PreferencesGroups;
     loading: boolean;
     error: string | null;
 }

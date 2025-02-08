@@ -1,13 +1,23 @@
 {
     "preferences": {
-        "data_sharing_consent": {
-            "name": "Vault Record Sharing",
-            "description": "Allow your vault records to be shared with other dwarves."
+        "market_updates": {
+            "name": "Treasury Reports",
+            "description": "Monitor the flow of precious metals and gems across the great forges"
         },
-        "dwarven_newsletter": {
-            "id": "dwarven_newsletter",
-            "name": "Dwarven Newsletter",
-            "description": "Receive important news and updates from the dwarves.",
+        "dark_mode": {
+            "name": "Deep Delving Sight",
+            "description": "Optimize visibility for the depths of our halls"
+        },
+        "forge_notifications": {
+            "id": "forge_notifications",
+            "name": "Forge Alerts",
+            "description": "Receive updates on forge temperatures and material availability",
+            "enabled": true
+        },
+        "mining_reports": {
+            "id": "mining_reports",
+            "name": "Mining Operations",
+            "description": "Daily reports on new veins, cave stability, and excavation progress",
             "enabled": true
         }
     }
