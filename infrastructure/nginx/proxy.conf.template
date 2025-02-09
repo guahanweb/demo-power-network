@@ -1,0 +1,58 @@
+upstream dwarven-client {
+    server ${DWARVEN_CLIENT_SERVICE_ADDR};
+}
+
+upstream elven-client {
+    server ${ELVEN_CLIENT_SERVICE_ADDR};
+}
+
+upstream human-client {
+    server ${HUMAN_CLIENT_SERVICE_ADDR};
+}
+
+upstream power-client {
+    server ${POWER_CLIENT_SERVICE_ADDR};
+}
+
+server {
+    listen ${NGINX_PORT};
+    server_name _;
+
+    # Dwarven client
+    server_name dwarven.ringnetwork.com;
+    location / {
+        proxy_pass http://dwarven-client;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+}
+
+server {
+    # Elven client
+    server_name elven.ringnetwork.com;
+    location / {
+        proxy_pass http://elven-client;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+}
+
+server {
+    # Human client
+    server_name human.ringnetwork.com;
+    location / {
+        proxy_pass http://human-client;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+}
+
+server {
+    # Power client
+    server_name power.ringnetwork.com;
+    location / {
+        proxy_pass http://power-client;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+}

@@ -1,0 +1,43 @@
+upstream backend {
+    server ${API_SERVICE_ADDR};
+}
+
+server {
+    listen ${NGINX_PORT};
+    server_name _;
+
+    # Root folder for serving the web application
+    root /usr/share/nginx/html;
+
+    # Default index file
+    index index.html;
+
+    # handle our api calls
+    location /api {
+        rewrite ^/api/(.*)$ /$1 break;
+        proxy_pass http://backend;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        # Add client id to the request
+        proxy_set_header X-Client-ID ${FRONTEND_CLIENT_ID};
+    }
+
+    # Redirect root to /app
+    location = / {
+        try_files $uri /index.html;
+    }
+
+    # Serve the web application
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+
+    error_page 404 /index.html;
+
+    # Logging (optional)
+    access_log /var/log/nginx/access.log;
+    error_log /var/log/nginx/error.log;
+}

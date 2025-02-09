@@ -1,24 +1,32 @@
 services:
-  # reverse-proxy:
-  #   image: nginx:latest
-  #   container_name: nginx
-  #   volumes:
-  #     - ./infrastructure/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-  #   ports:
-  #     - "80:80"
-  #   depends_on:
-  #     - api
-  #     - elven-client
-  #     - dwarven-client
-  #     - human-client
-  #   networks:
-  #     - app-network
+  reverse-proxy:
+    image: nginx:latest
+    container_name: ${PROJECT_NAME}-nginx
+    volumes:
+      - ./infrastructure/nginx/proxy.conf.template:/etc/nginx/templates/default.conf.template:ro
+    ports:
+      - "${PROXY_PORT}:${PROXY_PORT}"
+    depends_on:
+      - elven-client
+      - dwarven-client
+      - human-client
+      - power-client
+    environment:
+      - DWARVEN_CLIENT_SERVICE_ADDR=dwarven-client:${DWARVEN_CLIENT_PORT}
+      - ELVEN_CLIENT_SERVICE_ADDR=elven-client:${ELVEN_CLIENT_PORT}
+      - HUMAN_CLIENT_SERVICE_ADDR=human-client:${HUMAN_CLIENT_PORT}
+      - POWER_CLIENT_SERVICE_ADDR=power-client:${POWER_CLIENT_PORT}
+      - NGINX_PORT=${PROXY_PORT}
+    networks:
+      - app-network
 
   api:
     build:
       context: .
       dockerfile: ${API_DOCKERFILE}
       target: dev
+      args:
+        - WORKSPACE=${API_WORKSPACE}
     container_name: ${PROJECT_NAME}-api
     environment:
       - NODE_ENV=${NODE_ENV}
@@ -34,18 +42,6 @@ services:
     networks:
       - app-network
 
-  # websocket-service:
-  #   build:
-  #     context: ./apps/websocket-service
-  #     dockerfile: Dockerfile
-  #   container_name: websocket-service
-  #   environment:
-  #     - NODE_ENV=development
-  #   ports:
-  #     - "3002:3002"
-  #   networks:
-  #     - app-network
-
   redis:
     image: redis:alpine
     container_name: ${PROJECT_NAME}-redis
@@ -59,11 +55,19 @@ services:
       context: .
       dockerfile: ${POWER_CLIENT_DOCKERFILE}
       target: dev
+      args:
+        - WORKSPACE=${POWER_CLIENT_WORKSPACE}
+        - TEMPLATE_NAME=${POWER_CLIENT_TEMPLATE}
+    depends_on:
+      - api
     container_name: ${PROJECT_NAME}-power-client
     environment:
       - VITE_HOST=0.0.0.0
       - VITE_PORT=${POWER_CLIENT_PORT}
       - API_URL=http://api:${API_PORT}
+      - API_SERVICE_ADDR=api:${API_PORT}
+      - FRONTEND_CLIENT_ID=power
+      - NGINX_PORT=${POWER_CLIENT_PORT}
     volumes:
       - ./apps/power-client/src:/app/apps/power-client/src
       - ./apps/power-client/public:/app/apps/power-client/public
@@ -77,11 +81,19 @@ services:
       context: .
       dockerfile: ${ELVEN_CLIENT_DOCKERFILE}
       target: dev
+      args:
+        - WORKSPACE=${ELVEN_CLIENT_WORKSPACE}
+        - TEMPLATE_NAME=${ELVEN_CLIENT_TEMPLATE}
+    depends_on:
+      - api
     container_name: ${PROJECT_NAME}-elven-client
     environment:
       - VITE_HOST=0.0.0.0
       - VITE_PORT=${ELVEN_CLIENT_PORT}
       - API_URL=http://api:${API_PORT}
+      - API_SERVICE_ADDR=api:${API_PORT}
+      - FRONTEND_CLIENT_ID=elven
+      - NGINX_PORT=${ELVEN_CLIENT_PORT}
     volumes:
       - ./apps/elven-client/src:/app/apps/elven-client/src
       - ./apps/elven-client/public:/app/apps/elven-client/public
@@ -94,15 +106,23 @@ services:
     build:
       context: .
       dockerfile: ${DWARVEN_CLIENT_DOCKERFILE}
-      target: dev
+      target: prod
+      args:
+        - WORKSPACE=${DWARVEN_CLIENT_WORKSPACE}
+        - TEMPLATE_NAME=${DWARVEN_CLIENT_TEMPLATE}
+    depends_on:
+      - api
     container_name: ${PROJECT_NAME}-dwarven-client
     environment:
       - VITE_HOST=0.0.0.0
       - VITE_PORT=${DWARVEN_CLIENT_PORT}
       - API_URL=http://api:${API_PORT}
-    volumes:
-      - ./apps/dwarven-client/src:/app/apps/dwarven-client/src
-      - ./apps/dwarven-client/public:/app/apps/dwarven-client/public
+      - API_SERVICE_ADDR=api:${API_PORT}
+      - FRONTEND_CLIENT_ID=dwarven
+      - NGINX_PORT=${DWARVEN_CLIENT_PORT}
+    # volumes:
+      # - ./apps/dwarven-client/src:/app/apps/dwarven-client/src
+      # - ./apps/dwarven-client/public:/app/apps/dwarven-client/public
     ports:
       - "${DWARVEN_CLIENT_PORT}:${DWARVEN_CLIENT_PORT}"
     networks:
@@ -113,11 +133,19 @@ services:
       context: .
       dockerfile: ${HUMAN_CLIENT_DOCKERFILE}
       target: dev
+      args:
+        - WORKSPACE=${HUMAN_CLIENT_WORKSPACE}
+        - TEMPLATE_NAME=${HUMAN_CLIENT_TEMPLATE}
+    depends_on:
+      - api
     container_name: ${PROJECT_NAME}-human-client
     environment:
       - VITE_HOST=0.0.0.0
       - VITE_PORT=${HUMAN_CLIENT_PORT}
       - API_URL=http://api:${API_PORT}
+      - API_SERVICE_ADDR=api:${API_PORT}
+      - FRONTEND_CLIENT_ID=human
+      - NGINX_PORT=${HUMAN_CLIENT_PORT}
     volumes:
       - ./apps/human-client/src:/app/apps/human-client/src
       - ./apps/human-client/public:/app/apps/human-client/public

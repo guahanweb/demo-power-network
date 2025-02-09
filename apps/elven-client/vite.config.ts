@@ -2,9 +2,11 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 
+const clientId = process.env.FRONTEND_CLIENT_ID || 'elven';
 const server: any = {
     host: process.env.VITE_HOST || 'localhost',
     port: Number(process.env.VITE_PORT) || 3000, // Default to 3000 if not set
+    allowedHosts: ['elven.ringnetwork.com'],
 };
 
 if (process.env.API_URL) {
@@ -12,7 +14,7 @@ if (process.env.API_URL) {
         '/api': {
             target: process.env.API_URL,
             headers: {
-              'x-client-id': 'elven',
+              'x-client-id': clientId,
             },
             changeOrigin: true,
             rewrite: (path: string) => path.replace(/^\/api/, ''),
