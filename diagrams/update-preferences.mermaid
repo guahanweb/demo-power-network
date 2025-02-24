@@ -1,0 +1,8 @@
+```mermaid
+sequenceDiagram
+    Client->>API: Update preference
+    API->>Redis: Store update
+    Redis->>API: Confirm storage
+    API->>Redis: Publish event
+    Redis-->>OtherClients: Notify change
+```

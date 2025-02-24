@@ -22,6 +22,7 @@ export const reqHeaderClient = (opts: Partial<ReqHeaderClientOpts> = {}) => {
             res.status(400).json({ error: 'Invalid client' });
             return;
         }
+        console.info('[INFO] Request from client:', clientId);
         res.locals.clientId = clientId;
         next();
     };

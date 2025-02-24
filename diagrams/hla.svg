@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600">
+    <!-- Background -->
+    <rect width="1000" height="600" fill="#FFFFFF"/>
+    
+    <!-- Backend Services (Left Side) -->
+    <!-- Core API Circle -->
+    <circle cx="200" cy="300" r="80" fill="none" stroke="#C4A462" stroke-width="3"/>
+    <text x="200" y="290" text-anchor="middle" fill="#1A2B3C" font-family="Arial" font-size="16">Core API</text>
+    <text x="200" y="310" text-anchor="middle" fill="#666" font-family="Arial" font-size="12">(The One Ring)</text>
+    
+    <!-- Redis -->
+    <circle cx="200" cy="450" r="40" fill="#2C4A2C" fill-opacity="0.1" stroke="#2C4A2C" stroke-width="2"/>
+    <text x="200" y="445" text-anchor="middle" fill="#1A2B3C" font-family="Arial" font-size="14">Redis</text>
+    <text x="200" y="460" text-anchor="middle" fill="#666" font-family="Arial" font-size="10">(Palantír)</text>
+    
+    <!-- Redis Connection -->
+    <line x1="200" y1="380" x2="200" y2="410" stroke="#2C4A2C" stroke-width="2" stroke-dasharray="5,5"/>
+    <text x="220" y="400" fill="#666" font-family="Arial" font-size="10">State Management</text>
+    
+    <!-- NGINX Gateway (Center) -->
+    <rect x="400" y="250" width="120" height="100" fill="#1A2B3C" fill-opacity="0.1" stroke="#1A2B3C" stroke-width="2" rx="5"/>
+    <text x="460" y="290" text-anchor="middle" fill="#1A2B3C" font-family="Arial" font-size="14">NGINX</text>
+    <text x="460" y="310" text-anchor="middle" fill="#666" font-family="Arial" font-size="10">(The Council)</text>
+    
+    <!-- Client Realms (Right Side) -->
+    <!-- Elven -->
+    <rect x="700" y="100" width="120" height="60" fill="#C4A462" fill-opacity="0.1" stroke="#C4A462" stroke-width="2" rx="5"/>
+    <text x="760" y="130" text-anchor="middle" fill="#1A2B3C" font-family="Arial" font-size="14">Elven Client</text>
+    <text x="760" y="145" text-anchor="middle" fill="#666" font-family="Arial" font-size="10">Light &amp; Elegant</text>
+    
+    <!-- Dwarven -->
+    <rect x="700" y="200" width="120" height="60" fill="#C4A462" fill-opacity="0.1" stroke="#C4A462" stroke-width="2" rx="5"/>
+    <text x="760" y="230" text-anchor="middle" fill="#1A2B3C" font-family="Arial" font-size="14">Dwarven Client</text>
+    <text x="760" y="245" text-anchor="middle" fill="#666" font-family="Arial" font-size="10">Robust &amp; Dense</text>
+    
+    <!-- Human -->
+    <rect x="700" y="300" width="120" height="60" fill="#C4A462" fill-opacity="0.1" stroke="#C4A462" stroke-width="2" rx="5"/>
+    <text x="760" y="330" text-anchor="middle" fill="#1A2B3C" font-family="Arial" font-size="14">Human Client</text>
+    <text x="760" y="345" text-anchor="middle" fill="#666" font-family="Arial" font-size="10">Practical &amp; Adaptable</text>
+    
+    <!-- Power -->
+    <rect x="700" y="400" width="120" height="60" fill="#C4A462" fill-opacity="0.1" stroke="#C4A462" stroke-width="2" rx="5"/>
+    <text x="760" y="430" text-anchor="middle" fill="#1A2B3C" font-family="Arial" font-size="14">Power Client</text>
+    <text x="760" y="445" text-anchor="middle" fill="#666" font-family="Arial" font-size="10">Admin Interface</text>
+    
+    <!-- Connection Lines -->
+    <!-- Clients to NGINX -->
+    <line x1="700" y1="130" x2="520" y2="280" stroke="#1A2B3C" stroke-width="1"/>
+    <line x1="700" y1="230" x2="520" y2="290" stroke="#1A2B3C" stroke-width="1"/>
+    <line x1="700" y1="330" x2="520" y2="310" stroke="#1A2B3C" stroke-width="1"/>
+    <line x1="700" y1="430" x2="520" y2="320" stroke="#1A2B3C" stroke-width="1"/>
+    
+    <!-- NGINX to API -->
+    <line x1="400" y1="300" x2="280" y2="300" stroke="#C4A462" stroke-width="2"/>
+    
+    <!-- Labels -->
+    <text x="600" y="250" fill="#666" font-family="Arial" font-size="10">Client Requests</text>
+    <text x="340" y="280" fill="#666" font-family="Arial" font-size="10">API Requests</text>
+    
+    <!-- Domain Labels -->
+    <text x="850" y="130" fill="#666" font-family="Arial" font-size="10">elven.ringnetwork.com</text>
+    <text x="850" y="230" fill="#666" font-family="Arial" font-size="10">dwarven.ringnetwork.com</text>
+    <text x="850" y="330" fill="#666" font-family="Arial" font-size="10">human.ringnetwork.com</text>
+    <text x="850" y="430" fill="#666" font-family="Arial" font-size="10">power.ringnetwork.com</text>
+</svg>

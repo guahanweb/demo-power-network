@@ -1,0 +1,8 @@
+```mermaid
+sequenceDiagram
+    Client->>NGINX: Request to dwarven.ringnetwork.com
+    NGINX->>API: Forward with X-Client-ID
+    API->>Redis: Check state
+    Redis-->>API: Current preferences
+    API-->>Client: Customized response
+```
