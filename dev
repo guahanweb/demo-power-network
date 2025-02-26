@@ -20,7 +20,11 @@ case ${CMD} in
         ${DOCKER_COMPOSE_CMD} ${DOCKER_COMPOSE_ENV} up --force-recreate --remove-orphans --detach
         echo ""
         echo "Power Network Demo is running."
-        echo "Go to http://localhost:3080 for the reverse proxy."
+        echo "If you have set up your /etc/hosts file, the following URLs should be accessible:"
+        echo "  - http://elven.ringnetwork.com"
+        echo "  - http://dwarven.ringnetwork.com"
+        echo "  - http://human.ringnetwork.com"
+        echo "  - http://power.ringnetwork.com"
         ;;
 
     stop)
